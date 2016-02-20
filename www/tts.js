@@ -10,13 +10,14 @@
 
 */
 
-exports.speak = function (text, onfulfilled, onrejected) {
+exports.speak = function (text, pitch, onfulfilled, onrejected) {
     var options = {};
 
     if (typeof text == 'string') {
         options.text = text;
-    } else {
-        options = text;
+    }
+    if (typeof pitch == 'double') {
+        options.pitch = pitch;
     }
 
     cordova

@@ -52,6 +52,7 @@
     NSString* text = [options objectForKey:@"text"];
     NSString* locale = [options objectForKey:@"locale"];
     double rate = [[options objectForKey:@"rate"] doubleValue];
+    double rate = [[options objectForKey:@"pitch"] doubleValue];
     
     if (!locale || (id)locale == [NSNull null]) {
         locale = @"en-US";
@@ -65,7 +66,7 @@
     utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:locale];
     // Rate expression adjusted manually for a closer match to other platform.
     utterance.rate = (AVSpeechUtteranceMinimumSpeechRate * 1.5 + AVSpeechUtteranceDefaultSpeechRate) / 2.5 * rate * rate;
-    utterance.pitchMultiplier = 1.2;
+    utterance.pitchMultiplier = pitch;
     [synthesizer speakUtterance:utterance];
 }
 
